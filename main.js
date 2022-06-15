@@ -87,7 +87,10 @@ function recurse() {
     return setTimeout(() => {
         checker();
         console.log("triggerred");
-        recurse();
+        setTimeout(()=>{
+            recurse();
+        }, 0);
+        return;
         }, 15000 + Math.floor(Math.random()*1000000) % 20000
         );
 }
