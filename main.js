@@ -1,6 +1,7 @@
 const fetch = require("node-fetch");
 const system = require("child_process").exec;
 const nodemailer = require("nodemailer");
+let checkedCounter = new Number(0);
 function send(ger){
     
     const transporter = nodemailer.createTransport({
@@ -73,8 +74,10 @@ fetch("https://www.kinoafisha.ge/movie/current/?id=625fcb0c956167247a358516")
     }
 }
 //=====================
+Boolean(checkedCounter % 20) ? process.stdout.write(String(cinemaSet.size).concat("     ")) : process.stdout.write(String(cinemaSet.size).concat('\n\n\n'));
+
 if (Boolean(--cinemaSet.size) && !is_sent) {
-    //system("start videoplayback.mp4 && start 1.html");
+    system("start videoplayback.mp4 && start 1.html");
     send("elizbarashvili.guram18@gmail.com");
     send("g_elizbarashvili@cu.edu.ge");
     is_sent = true;
@@ -84,12 +87,12 @@ if (Boolean(--cinemaSet.size) && !is_sent) {
 }
 recurse();
 function recurse() {
+    checkedCounter++;
     return setTimeout(() => {
         checker();
-        console.log("triggerred");
         setTimeout(()=>{
             recurse();
-        }, 0);
+        }, 20);
         return;
         }, 15000 + Math.floor(Math.random()*1000000) % 20000
         );
