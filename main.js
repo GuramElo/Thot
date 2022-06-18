@@ -1,4 +1,4 @@
-const fetch = require("node-fetch");
+﻿const fetch = require("node-fetch");
 const system = require("child_process").exec;
 const nodemailer = require("nodemailer");
 let checkedCounter = new Number(0);
@@ -77,7 +77,7 @@ fetch("https://www.kinoafisha.ge/movie/current/?id=625fcb0c956167247a358516")
 Boolean(checkedCounter % 20) ? process.stdout.write(String(cinemaSet.size).concat("     ")) : process.stdout.write(String(cinemaSet.size).concat('\n\n\n'));
 
 if (Boolean(--cinemaSet.size) && !is_sent) {
-    system("start videoplayback.mp4 && start 1.html");
+    system("start videoplayback.mp4");
     send("elizbarashvili.guram18@gmail.com");
     send("g_elizbarashvili@cu.edu.ge");
     is_sent = true;
